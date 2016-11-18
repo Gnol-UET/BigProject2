@@ -15,6 +15,12 @@ public class JobList {
         list = new ArrayList<>();
         index = numberOfList;
     }
+    public JobList(String newJobListName){
+        numberOfList ++;
+        name = newJobListName;
+        list = new ArrayList<>();
+        index = numberOfList;
+    }
     public void addJobToCurrentList(Job job){
         list.add(job);
     }
@@ -23,6 +29,14 @@ public class JobList {
         return list;
     }
 
+    public Job findAJob(String nameOfJobToFind){
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getName().equalsIgnoreCase(nameOfJobToFind)){
+                return list.get(i);
+            }
+        }
+        return null;
+    }
     public void setList(List<Job> list) {
         this.list = list;
     }

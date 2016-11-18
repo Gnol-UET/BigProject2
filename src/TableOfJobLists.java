@@ -14,10 +14,17 @@ public class TableOfJobLists implements Serializable {
     private String nameOfTable;
     private List<JobList> toDoList;
 
-    public void addJobToCurrentTable(int listIndex, Job job) {
-        toDoList.get(listIndex).addJobToCurrentList(job);
+    public void addJobToCurrentTable(JobList jobList) {
+        toDoList.add(jobList);
     }
-
+    public JobList findAJobList(String namejobListToFind){
+        for (int i = 0; i < toDoList.size(); i++) {
+            if(toDoList.get(i).getName().equalsIgnoreCase(namejobListToFind)){
+                return toDoList.get(i);
+            }
+        }
+        return null;
+    }
     public List<JobList> getToDoList() {
         return toDoList;
     }
@@ -36,7 +43,7 @@ public class TableOfJobLists implements Serializable {
 
     public TableOfJobLists() {
         numberOfTable++;
-        nameOfTable = " DefaultTable" + numberOfTable;
+        nameOfTable = "DefaultTable" + numberOfTable;
         toDoList = new ArrayList<>();
         index = numberOfTable;
     }

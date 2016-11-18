@@ -23,6 +23,10 @@ public class Frame1 extends JFrame {
         panel1 = new JPanel();
         panel2 = new JPanel();
         separator2 = new JSeparator();
+        button1 = new JButton();
+        button2 = new JButton();
+        label1 = new JLabel();
+        label2 = new JLabel();
         java.util.List<JPanel> jPanels = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
@@ -66,6 +70,26 @@ public class Frame1 extends JFrame {
         contentPane.add(separator2);
         separator2.setBounds(0, -10, 1045, 12);
 
+        //---- button1 ----
+        button1.setText("Add table");
+        contentPane.add(button1);
+        button1.setBounds(new Rectangle(new Point(15, 340), button1.getPreferredSize()));
+
+        //---- button2 ----
+        button2.setText("Add list");
+        contentPane.add(button2);
+        button2.setBounds(235, 65, 45, 35);
+
+        //---- label1 ----
+        label1.setText("Table");
+        contentPane.add(label1);
+        label1.setBounds(new Rectangle(new Point(15, 25), label1.getPreferredSize()));
+
+        //---- label2 ----
+        label2.setText("Job list");
+        contentPane.add(label2);
+        label2.setBounds(new Rectangle(new Point(240, 25), label2.getPreferredSize()));
+
         { // compute preferred size
             Dimension preferredSize = new Dimension();
             for(int i = 0; i < contentPane.getComponentCount(); i++) {
@@ -93,5 +117,9 @@ public class Frame1 extends JFrame {
     private JPanel panel1;
     private JPanel panel2;
     private JSeparator separator2;
+    private JButton button1;
+    private JButton button2;
+    private JLabel label1;
+    private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

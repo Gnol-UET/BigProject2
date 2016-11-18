@@ -41,6 +41,31 @@ public class User2 implements Serializable {
         this.currentJob = currentJob;
     }
 
+    public static List<String> getUserLogs() {
+        return userLogs;
+    }
+
+    public static void setUserLogs(List<String> userLogs) {
+        User2.userLogs = userLogs;
+    }
+
+    public List<TableOfJobLists> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<TableOfJobLists> userList) {
+        this.userList = userList;
+    }
+    public TableOfJobLists findATable(String tableName){
+        for (int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getNameOfTable().equalsIgnoreCase(tableName)){
+                return userList.get(i);
+            }
+        }
+        return null;
+    }
+
+
     public User2() {
         userList = new ArrayList<>();
         userLogs.add("User logged in");
@@ -64,8 +89,9 @@ public class User2 implements Serializable {
     }
 
     public void addNewTable(String name) {
-        userList.add(new TableOfJobLists());
-        userList.get(userList.size()).setNameOfTable(name);
+        TableOfJobLists newTable = new TableOfJobLists();
+        newTable.setNameOfTable(name);
+        userList.add(newTable);
     }
 
     public Job createNewJob(String description, String startTime, String endTime, String repeat, String time) throws ParseException {

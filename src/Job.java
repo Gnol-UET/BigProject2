@@ -7,7 +7,6 @@ import java.util.Date;
  */
 public class Job implements Serializable {
     public String[] priorityDetail = {"low", "average", "high", "highest"};
-
     private String description;
     private String name;
     private String repeat;//daily,weekly ,once
@@ -20,6 +19,14 @@ public class Job implements Serializable {
      * default constructor
      */
     public Job() {
+        name = "No name";
+        description = "No description";
+        repeat = "once";
+        priority = 0;
+        status = "To do";
+    }
+    public Job(String newJobName) {
+        name = newJobName;
         description = "No description";
         repeat = "once";
         priority = 0;
