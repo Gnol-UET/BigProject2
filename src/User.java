@@ -15,7 +15,7 @@ public class User implements Serializable {
     private JobList currentList;
     private Job currentJob;
     public static List<String> userLogs = new ArrayList<>();
-    List<TableOfJobLists> userList;
+    List<TableOfJobLists> tableOfJobListses;
 
     public TableOfJobLists getCurrentTable() {
         return currentTable;
@@ -49,17 +49,17 @@ public class User implements Serializable {
         User.userLogs = userLogs;
     }
 
-    public List<TableOfJobLists> getUserList() {
-        return userList;
+    public List<TableOfJobLists> getTableOfJobListses() {
+        return tableOfJobListses;
     }
 
-    public void setUserList(List<TableOfJobLists> userList) {
-        this.userList = userList;
+    public void setTableOfJobListses(List<TableOfJobLists> tableOfJobListses) {
+        this.tableOfJobListses = tableOfJobListses;
     }
     public TableOfJobLists findATable(String tableName){
-        for (int i = 0; i < userList.size(); i++) {
-            if(userList.get(i).getNameOfTable().equalsIgnoreCase(tableName)){
-                return userList.get(i);
+        for (int i = 0; i < tableOfJobListses.size(); i++) {
+            if(tableOfJobListses.get(i).getNameOfTable().equalsIgnoreCase(tableName)){
+                return tableOfJobListses.get(i);
             }
         }
         return null;
@@ -67,7 +67,7 @@ public class User implements Serializable {
 
 
     public User() {
-        userList = new ArrayList<>();
+        tableOfJobListses = new ArrayList<>();
         userLogs.add("User logged in");
 
     }
@@ -81,17 +81,17 @@ public class User implements Serializable {
     }
 
     public void editTableName(int tableIndex, String newName) {
-        this.userList.get(tableIndex).setNameOfTable(newName);
+        this.tableOfJobListses.get(tableIndex).setNameOfTable(newName);
     }
 
     public void removeATable(int tableIndex) {
-        userList.remove(tableIndex);
+        tableOfJobListses.remove(tableIndex);
     }
 
     public void addNewTable(String name) {
         TableOfJobLists newTable = new TableOfJobLists();
         newTable.setNameOfTable(name);
-        userList.add(newTable);
+        tableOfJobListses.add(newTable);
     }
 
     public Job createNewJob(String description, String startTime, String endTime, String repeat, String time) throws ParseException {

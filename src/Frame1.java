@@ -19,8 +19,8 @@ public class Frame1 extends JFrame {
     public void postATable() {
         user.addNewTable(newTableName);
         DefaultListModel defaultListModel = new DefaultListModel();
-        for (int i = 0; i < user.getUserList().size(); i++) {
-            defaultListModel.addElement(user.getUserList().get(i).getNameOfTable());
+        for (int i = 0; i < user.getTableOfJobListses().size(); i++) {
+            defaultListModel.addElement(user.getTableOfJobListses().get(i).getNameOfTable());
         }
         list1.setModel(defaultListModel);
 
@@ -37,7 +37,7 @@ public class Frame1 extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Long Do Thanh
         scrollPane1 = new JScrollPane();
-        java.util.List<JPanel> jPanels = new ArrayList<>();
+
         list1 = new JList();
         list1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -51,7 +51,7 @@ public class Frame1 extends JFrame {
                     int index = list.locationToIndex(evt.getPoint());
                     String ten = list.getModel().getElementAt(index).toString();
                     user.setCurrentTable(user.findATable(ten));
-                    user.getCurrentTable().addJobToCurrentTable(new JobList("list1"));
+//                    user.getCurrentTable().addJobToCurrentTable(new JobList("list1"));
 
                     user.setCurrentList(user.getCurrentTable().findAJobList("list1"));
                     for (int i = 0; i < user.getCurrentTable().getToDoList().size(); i++) {
@@ -91,8 +91,8 @@ public class Frame1 extends JFrame {
         user.addNewTable("bang1");
         user.setCurrentTable(user.findATable("bang1"));
         DefaultListModel defaultListModel = new DefaultListModel();
-        for (int i = 0; i < user.getUserList().size(); i++) {
-            defaultListModel.addElement(user.getUserList().get(i).getNameOfTable());
+        for (int i = 0; i < user.getTableOfJobListses().size(); i++) {
+            defaultListModel.addElement(user.getTableOfJobListses().get(i).getNameOfTable());
         }
         list1.setModel(defaultListModel);
 
@@ -162,7 +162,49 @@ public class Frame1 extends JFrame {
     }
 
     private void addAListActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        String selectedTable = (String) list1.getSelectedValue();
+        for (int i = 0; i < user.getTableOfJobListses().size(); i++) {
+            if(user.getTableOfJobListses().get(i).getNameOfTable().equalsIgnoreCase(selectedTable)){
+                user.setCurrentTable(user.getTableOfJobListses().get(i));
+                break;
+            }
+        }
+        JTextField newName = new JTextField();
+        final JComponent[] inputs = new JComponent[]{
+                new JLabel("New List name: "),
+                newName,
+        };
+        ArrayList<String> newListIntable = new ArrayList<>();
+        int result = JOptionPane.showConfirmDialog(null, inputs, "New List", JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION) {
+            user.getCurrentTable().getToDoList().add(new JobList(newName.getText()));
+//            tabbedPane1.addTab("123", new JPanel() );
+            jPanels.clear();
+            jPanels.removeAll(jPanels);
+            while (tabbedPane1.getTabCount() > 0)
+                tabbedPane1.remove(0);
+            for (int i = 0; i < user.getCurrentTable().getToDoList().size(); i++) {
+                jPanels.add(i, new JPanel());
+                jPanels.get(i).setLayout(null);
+                Dimension preferredSize = new Dimension();
+                for (int j = 0; i < jPanels.get(i).getComponentCount(); j++) {
+                    Rectangle bounds = jPanels.get(0).getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = jPanels.get(0).getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                jPanels.get(i).setMinimumSize(preferredSize);
+                jPanels.get(i).setPreferredSize(preferredSize);
+                tabbedPane1.addTab(user.getCurrentTable().getToDoList().get(i).getName(), jPanels.get(i));
 
+            }
+
+        } else {
+            System.out.println("User canceled / closed the dialog, result = " + result);
+        }
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -181,6 +223,7 @@ public class Frame1 extends JFrame {
     User user = new User();
     User user2 = new User();
     public String newTableName = new String();
+    java.util.List<JPanel> jPanels = new ArrayList<>();
 
 
     // JFormDesigner - End of variables declaration  //GEN-END:variables
