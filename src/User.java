@@ -10,7 +10,7 @@ import java.util.List;
  * @author Vu Ngoc Quy - 10521480
  *         Lab 0
  */
-public class User2 implements Serializable {
+public class User implements Serializable {
     private TableOfJobLists currentTable;
     private JobList currentList;
     private Job currentJob;
@@ -46,7 +46,7 @@ public class User2 implements Serializable {
     }
 
     public static void setUserLogs(List<String> userLogs) {
-        User2.userLogs = userLogs;
+        User.userLogs = userLogs;
     }
 
     public List<TableOfJobLists> getUserList() {
@@ -66,7 +66,7 @@ public class User2 implements Serializable {
     }
 
 
-    public User2() {
+    public User() {
         userList = new ArrayList<>();
         userLogs.add("User logged in");
 
@@ -141,14 +141,14 @@ public class User2 implements Serializable {
 
     }
 
-    public User2 readFromFile() throws IOException, ClassNotFoundException {
+    public User readFromFile() throws IOException, ClassNotFoundException {
         File inFile = new File("C:/Program Files/MyReminder/data/new.admin");
         if (!inFile.exists()) {
             this.saveToFile();
         }
         FileInputStream inStream = new FileInputStream(inFile);
         ObjectInputStream ObjInPutStream = new ObjectInputStream(inStream);
-        User2 userAdmin = (User2) ObjInPutStream.readObject();
+        User userAdmin = (User) ObjInPutStream.readObject();
         ObjInPutStream.close();
         return userAdmin;
     }

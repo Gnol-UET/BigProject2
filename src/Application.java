@@ -7,18 +7,18 @@ public class Application {
 
     public static void main(String[] args) throws ParseException, IOException, ClassNotFoundException {
         //create new user
-        User2 newUser = new User2();
+        User user = new User();
         // add a new List named HomeWork
-        newUser.saveToFile();
+        user.saveToFile();
         System.out.println("hello");
-        newUser.addNewTable("bang1");
-        newUser.setCurrentTable(newUser.findATable("bang1"));
-        newUser.getCurrentTable().addJobToCurrentTable(new JobList("list1"));
+        user.addNewTable("bang1");
+        user.setCurrentTable(user.findATable("bang1"));
+        user.getCurrentTable().addJobToCurrentTable(new JobList("list1"));
 
-        newUser.setCurrentList(newUser.getCurrentTable().findAJobList("list1"));
-        newUser.getCurrentList().addJobToCurrentList(new Job("job1"));
+        user.setCurrentList(user.getCurrentTable().findAJobList("list1"));
+        user.getCurrentList().addJobToCurrentList(new Job("job1"));
 
-        newUser.setCurrentJob(newUser.getCurrentList().findAJob("job1"));
+        user.setCurrentJob(user.getCurrentList().findAJob("job1"));
 
 
 
