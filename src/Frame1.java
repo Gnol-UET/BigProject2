@@ -32,7 +32,9 @@ public class Frame1 extends JFrame {
 
         // TODO add your code here
     }
-
+    private void addJobActionPerformed(ActionEvent e){
+        JOptionPane.showMessageDialog(null,tabbedPane1.getTitleAt(tabbedPane1.getSelectedIndex()));
+    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Long Do Thanh
@@ -66,6 +68,8 @@ public class Frame1 extends JFrame {
                         jPanel.setPreferredSize(preferredSize);
                         JPanel newJPanel = new JPanel();
                         newJobBtn = new JButton();
+                        newJobBtn.addActionListener(e -> addJobActionPerformed(e));
+
                         newJobBtn.setText("New job");
                         newJobBtn.setBounds(new Rectangle(new Point(180, 45), newJobBtn.getPreferredSize()));
                         newJPanel.add(newJobBtn);
@@ -172,6 +176,8 @@ public class Frame1 extends JFrame {
         label2.setText("Job list");
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(240, 25), label2.getPreferredSize()));
+//----New Job Btn
+        newJobBtn.addActionListener(e -> addAListActionPerformed(e));
 
         { // compute preferred size
             Dimension preferredSize = new Dimension();
@@ -237,11 +243,12 @@ public class Frame1 extends JFrame {
             jPanel.setPreferredSize(preferredSize);
             JPanel newJPanel = new JPanel();
             newJobBtn = new JButton();
+            newJobBtn.addActionListener(f -> addJobActionPerformed(f));
             newJobBtn.setText("New job");
             newJobBtn.setBounds(new Rectangle(new Point(180, 45), newJobBtn.getPreferredSize()));
             newJPanel.add(newJobBtn);
             tabbedPane1.addTab(newName.getText(), newJPanel);
-
+//            JOptionPane.showMessageDialog(null,tabbedPane1.getSelectedComponent());
 
 
 
@@ -265,7 +272,6 @@ public class Frame1 extends JFrame {
     private JButton button3;
     private JLabel label1;
     private JLabel label2;
-    java.util.List<JButton> newJob = new ArrayList<>();
     JButton newJobBtn = new JButton();
     User user = new User();
     User user2 = new User();
