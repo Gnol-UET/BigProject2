@@ -64,7 +64,12 @@ public class Frame1 extends JFrame {
                         preferredSize.height += insets.bottom;
                         jPanel.setMinimumSize(preferredSize);
                         jPanel.setPreferredSize(preferredSize);
-                        tabbedPane1.addTab(user.getCurrentTable().getToDoList().get(i).getName(), new JPanel());
+                        JPanel newJPanel = new JPanel();
+                        newJobBtn = new JButton();
+                        newJobBtn.setText("New job");
+                        newJobBtn.setBounds(new Rectangle(new Point(180, 45), newJobBtn.getPreferredSize()));
+                        newJPanel.add(newJobBtn);
+                        tabbedPane1.addTab(user.getCurrentTable().getToDoList().get(i).getName(), newJPanel);
 
                     }
 
@@ -221,20 +226,22 @@ public class Frame1 extends JFrame {
             user.getCurrentTable().getToDoList().add(new JobList(newName.getText()));
 //            while (tabbedPane1.getTabCount() > 0)
 //                tabbedPane1.remove(0);
-                Dimension preferredSize = new Dimension();
-                Rectangle bounds = jPanel.getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                Insets insets = jPanel.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                jPanel.setMinimumSize(preferredSize);
-                jPanel.setPreferredSize(preferredSize);
-                tabbedPane1.addTab(newName.getText(), new JPanel());
-//                newJob.add(new JButton());
-//                newJob.get(i).setText("New job");
-//                newJob.get(i).setBounds(new Rectangle(new Point(180, 45), newJob.get(i).getPreferredSize()));
-//                jPanel.add(newJob.get(i));
+            Dimension preferredSize = new Dimension();
+            Rectangle bounds = jPanel.getBounds();
+            preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+            preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+            Insets insets = jPanel.getInsets();
+            preferredSize.width += insets.right;
+            preferredSize.height += insets.bottom;
+            jPanel.setMinimumSize(preferredSize);
+            jPanel.setPreferredSize(preferredSize);
+            JPanel newJPanel = new JPanel();
+            newJobBtn = new JButton();
+            newJobBtn.setText("New job");
+            newJobBtn.setBounds(new Rectangle(new Point(180, 45), newJobBtn.getPreferredSize()));
+            newJPanel.add(newJobBtn);
+            tabbedPane1.addTab(newName.getText(), newJPanel);
+
 
 
 
@@ -259,6 +266,7 @@ public class Frame1 extends JFrame {
     private JLabel label1;
     private JLabel label2;
     java.util.List<JButton> newJob = new ArrayList<>();
+    JButton newJobBtn = new JButton();
     User user = new User();
     User user2 = new User();
     public String newTableName = new String();
